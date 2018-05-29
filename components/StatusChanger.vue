@@ -8,7 +8,7 @@
             <font-awesome-icon
                 :icon="['fas', 'circle']"
                 :class="`text-${status ? 'primary' : 'danger'}`"/>
-            <span>{{ status ? active : inactive }}</span>
+            <span>{{ status ? activeText : inactiveText }}</span>
         </button>
         <div
             class="dropdown-menu"
@@ -16,7 +16,7 @@
             <a
                 @click.capture.prevent.stop="toggleStatus"
                 class="dropdown-item"
-                href="#">{{ status ? inactive : active }}</a>
+                href="#">{{ status ? inactiveText : activeText }}</a>
         </div>
     </div>
 </template>
@@ -29,14 +29,22 @@
         data() {
             return {
                 showMenu: false,
-                status: Boolean,
             };
         },
-        props: [
-            'value',
-            'active',
-            'inactive',
-        ],
+        props: {
+            activeText: {
+                type: String,
+                default: 'Ativo',
+            },
+            inactiveText: {
+                type: String,
+                default: 'Inativo',
+            },
+            value: {
+                type: Boolean,
+                default: false,
+            },
+        },
         created() {
             this.status = this.value;
         },

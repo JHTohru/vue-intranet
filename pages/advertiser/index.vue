@@ -1,23 +1,49 @@
 <template>
     <div class="bg-white p-4">
         <h1>Lista de Advertisers</h1>
+        <b-button
+            :to="'advertiser/new'"
+            variant="primary">
+            <font-awesome-icon :icon="['fas', 'plus']" />
+            <span class="ml-2">Criar Advertiser</span>
+        </b-button>
+
+        <div class="input-group w-25 float-right mb-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text p-0 border-right-0">
+                    <button class="btn">
+                        <font-awesome-icon :icon="['fas', 'search']"/>
+                    </button>
+                </div>
+            </div>
+            <input
+                v-model="searchParameter"
+                type="text"
+                class="form-control  border-left-0"
+                placeholder="Buscar"/>
+        </div>
+
         <grid
             :columns="grid_columns"
             :rows="grid_rows"/>
-        <b-pagination align="center" :total-rows="100" v-model="currentPage" :per-page="10"/>
+        <b-pagination
+            align="right"
+            :total-rows="100"
+            :per-page="10"
+            v-model="currentPage"/>
     </div>
 </template>
 
 <script>
     import moment from 'moment';
-    import Grid from '../components/Grid';
-    import MoneyConsumption from '../components/MoneyConsumption';
-    import StatusChanger from '../components/StatusChanger';
-    import LinksList from '../components/LinksList';
+    import Grid from '../../components/Grid';
+    import MoneyConsumption from '../../components/MoneyConsumption';
+    import StatusChanger from '../../components/StatusChanger';
+    import LinksList from '../../components/LinksList';
 
     export default {
         props: [
-            'currentPage'
+            'currentPage',
         ],
         data() {
             return {
@@ -77,6 +103,7 @@
                     },
                 ],
                 total: 1,
+                searchParameter: '',
             };
         },
         computed: {
@@ -96,7 +123,7 @@
                 return this.advertisers.map(advertiser => ({
                     status: {
                         component: StatusChanger,
-                        props: { active: 'Ativo', inactive: 'Inativo', value: advertiser.status },
+                        props: { value: advertiser.status },
                     },
                     name: {
                         component: 'b-link',

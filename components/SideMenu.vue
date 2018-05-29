@@ -121,7 +121,7 @@ export default {
                 },
                 {
                     name: 'Advertisers',
-                    href: '/advertiser-list',
+                    href: '/advertiser',
                     icon: ['fas', 'chart-line'],
                 },
                 {
