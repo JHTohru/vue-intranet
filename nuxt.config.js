@@ -57,5 +57,6 @@ module.exports = {
     plugins: [
         'plugins/fontawesome.js' ,
         'plugins/bootstrap-vue.js',
+        'plugins/format-money-filter.js',
     ],
 };

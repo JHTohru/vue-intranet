@@ -7,7 +7,9 @@
         </b-col>
         <b-col class="position-relative">
             <site-header/>
-            <nuxt/>
+            <div class="p-4">
+                <nuxt/>
+            </div>
             <site-footer/>
         </b-col>
     </b-row>

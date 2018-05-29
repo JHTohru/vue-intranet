@@ -1,32 +1,33 @@
 <template>
     <div class="grid">
         <div class="grid-data">
-            <div
-                class="loading-blinds"
-                v-if="loadingData">
-                <span class="fa fa-circle-o-notch fa-2x fa-spin"></span>
-                <p>Carregando</p>
-            </div>
-            <table>
-                <thead>
+            <table class="table border border-muted align-middle">
+                <thead class="bg-light">
                     <tr>
                         <th
-                            v-for="column in gridColumns"
-                            :key="column.name"
-                            @click="column.sortable ? sort(column) : void 0"
-                            :class="[ { sortable: column.sortable }, column.boundProperty && sortProp === column.boundProperty ? sortOrder > 0 ? 'sort-asc' : 'sort-dsc' : '' ]">
-                            {{ column.name }}
+                            v-for="(column, index) in columns"
+                            :key="index">
+                            {{ column }}
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="bg-white">
                     <tr
-                        v-for="(row, rowIndex) of gridRows"
+                        v-for="(row, rowIndex) of rows"
                         :key="rowIndex">
                         <td
                             v-for="(entry, entryIndex) of row"
-                            :key="rowIndex + ':' + entryIndex"
-                            :html="entry"/>
+                            :key="entryIndex">
+                            <component
+                                v-if="typeof entry === 'object' && entry.component && entry.props"
+                                :is="entry.component"
+                                v-bind="entry.props">
+                                <template v-if="entry.value">
+                                    {{ entry.value }}
+                                </template>
+                            </component>
+                            <template v-else >{{ entry }}</template>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -34,25 +35,17 @@
     </div>
 </template>
 
+<style scoped>
+    table td {
+        vertical-align: middle;
+    }
+</style>
+
 <script>
     export default {
         props: {
-            requestingData: Boolean,
-            gridColumns: Array,
-            totalResults: Number,
-            gridRows: Array,
-            sortProp: String,
-            sortOrder: Number,
-            initialSearchQuery: String,
-            resultsPerPage: Number,
-            currentPage: Number,
-        },
-        methods: {
-            sort(column) {
-                return this.$eventHub.$emit('sort', column);
-            },
+            rows: Array,
+            columns: Array,
         },
     };
 </script>
-
-<style></style>

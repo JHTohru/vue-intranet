@@ -1,40 +1,130 @@
 <template>
-    <div>
-        <p>Total: {{ advertisers_list.total }}</p>
-        <table>
-            <!--<thead v-if="advertisers_list.advertisers.length > 0">-->
-            <!--<tr>-->
-                <!--<th v-for="(val, key) in advertisers_list.advertisers[0]"-->
-                    <!--:key="key"-->
-                    <!--:html="key"/>-->
-            <!--</tr>-->
-            <!--</thead>-->
-            <tbody>
-            <tr
-                    v-for="advertiser of advertisers_list.advertisers"
-                    :key="advertiser.id">
-                <td
-                    v-for="(val, key) in advertiser"
-                    :key="key">{{ val }}</td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="bg-white p-4">
+        <h1>Lista de Advertisers</h1>
+        <grid
+            :columns="grid_columns"
+            :rows="grid_rows"/>
+        <b-pagination align="center" :total-rows="100" v-model="currentPage" :per-page="10"/>
     </div>
 </template>
 
 <script>
-    import { mapState } from 'vuex';
-    import api from '~/lib/api';
-    import { types } from '~/store';
+    import moment from 'moment';
+    import Grid from '../components/Grid';
+    import MoneyConsumption from '../components/MoneyConsumption';
+    import StatusChanger from '../components/StatusChanger';
+    import LinksList from '../components/LinksList';
 
     export default {
-        fetch ({ store, params }) {
-            return api.advertisersList()
-                .then((json) => {
-                    console.dir(json);
-                    store.commit(types.ADVERTISERS_LIST_UPDATE, json.advertisers_list);
-                });
+        props: [
+            'currentPage'
+        ],
+        data() {
+            return {
+                advertisers: [
+                    {
+                        status: 1,
+                        id: '59ad85d54524e41b3bf4f0ee',
+                        name: 'AOC',
+                        type: 'seller',
+                        networks: [{
+                            id: '58120a6069c18664b84f3f58',
+                            name: 'Alpha',
+                        }],
+                        activeCampaigns: 3,
+                        createdAt: '2018-05-03T03:00:00Z',
+                        updatedAt: '2018-08-01T03:00:00Z',
+                        activeCampaignsConsumption: 1212.32,
+                        activeCampaignsBudget: 3600,
+                    },
+                    {
+                        status: 1,
+                        id: '580563fee4b08742287c30e3',
+                        name: 'Acer',
+                        type: 'seller',
+                        networks: [
+                            {
+                                id: '58090104e4b070707cb7dc02',
+                                name: 'Bravo',
+                            },
+                        ],
+                        activeCampaigns: 4,
+                        createdAt: '2018-02-10T03:00:00Z',
+                        updatedAt: '2018-03-29T03:00:00Z',
+                        activeCampaignsConsumption: 2931.09,
+                        activeCampaignsBudget: 5600,
+                    },
+                    {
+                        status: 2,
+                        id: '580563fee4b08742287c30e3',
+                        name: 'Epson',
+                        type: 'seller',
+                        networks: [
+                            {
+                                id: '58090104e4b070707cb7dc02',
+                                name: 'Charlie',
+                            },
+                            {
+                                id: '58090104e4b070707cb7dc02',
+                                name: 'Delta',
+                            },
+                        ],
+                        activeCampaigns: 4,
+                        createdAt: '2018-01-02T03:00:00Z',
+                        updatedAt: '2018-04-15T03:00:00Z',
+                        activeCampaignsConsumption: 3102.77,
+                        activeCampaignsBudget: 12000,
+                    },
+                ],
+                total: 1,
+            };
         },
-        computed: mapState(['advertisers_list']),
+        computed: {
+            grid_columns() {
+                return [
+                    'Status',
+                    'Nome',
+                    'Tipo',
+                    'Rede',
+                    'Campanhas Ativas',
+                    'Data de criação',
+                    'Data de atualização',
+                    'Receita'
+                ];
+            },
+            grid_rows() {
+                return this.advertisers.map(advertiser => ({
+                    status: {
+                        component: StatusChanger,
+                        props: { active: 'Ativo', inactive: 'Inativo', value: advertiser.status },
+                    },
+                    name: {
+                        component: 'b-link',
+                        value: advertiser.name,
+                        props: { href: `advertiser/${advertiser.id}` },
+                    },
+                    type: advertiser.type.charAt(0).toUpperCase() + advertiser.type.substr(1),
+                    network: {
+                        component: LinksList,
+                        props: {
+                            links: advertiser.networks.map(network => ({
+                                href: `/network/${network.id}`,
+                                text: network.name,
+                            })),
+                        },
+                    },
+                    activeCampaigns: advertiser.activeCampaigns,
+                    createdAt: moment(advertiser.createdAt).format('DD/MM/YYYY'),
+                    updatedAt: moment(advertiser.updatedAt).format('DD/MM/YYYY'),
+                    budget: {
+                        component: MoneyConsumption,
+                        props: { 'spent-money': advertiser.activeCampaignsConsumption, 'total-money': advertiser.activeCampaignsBudget },
+                    },
+                }));
+            },
+        },
+        components: {
+            Grid,
+        },
     };
 </script>

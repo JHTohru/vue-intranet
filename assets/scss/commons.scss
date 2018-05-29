@@ -6,3 +6,16 @@ body {
 a:hover {
   text-decoration: none;
 }
+
+.btn-outline-muted {
+    color: $text-muted;
+    background-color: transparent;
+    border-color: $text-muted;
+
+    &:focus {
+        box-shadow: 0 0 0 $input-btn-focus-width rgba($text-muted, .25);
+    }
+}
+
+.btn-outline-muted:hover {
+}
