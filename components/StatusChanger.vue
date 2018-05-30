@@ -4,10 +4,11 @@
             @click="toggleMenu"
             v-on-clickaway="closeMenu"
             type="button"
-            class="btn btn-outline-muted dropdown-toggle">
+            class="btn btn-outline-secondary dropdown-toggle">
             <font-awesome-icon
                 :icon="['fas', 'circle']"
-                :class="`text-${status ? 'primary' : 'danger'}`"/>
+                :class="`text-${!!status ? 'primary' : 'danger'}`"
+                class="mr-1"/>
             <span>{{ status ? activeText : inactiveText }}</span>
         </button>
         <div

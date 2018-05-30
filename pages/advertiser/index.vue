@@ -1,4 +1,5 @@
 <template>
+
     <div class="bg-white p-4">
         <h1>Lista de Advertisers</h1>
         <b-button
@@ -36,10 +37,10 @@
 
 <script>
     import moment from 'moment';
-    import Grid from '../../components/Grid';
-    import MoneyConsumption from '../../components/MoneyConsumption';
-    import StatusChanger from '../../components/StatusChanger';
-    import LinksList from '../../components/LinksList';
+    import Grid from '~/components/Grid';
+    import MoneyConsumption from '~/components/MoneyConsumption';
+    import StatusChanger from '~/components/StatusChanger';
+    import LinksList from '~/components/LinksList';
 
     export default {
         props: [
@@ -123,7 +124,7 @@
                 return this.advertisers.map(advertiser => ({
                     status: {
                         component: StatusChanger,
-                        props: { value: advertiser.status },
+                        props: { value: !!advertiser.status },
                     },
                     name: {
                         component: 'b-link',

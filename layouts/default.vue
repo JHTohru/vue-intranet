@@ -1,24 +1,28 @@
 <template>
-    <b-row
-        no-gutters
-        id="wrapper">
-        <b-col cols="2">
-            <side-menu/>
-        </b-col>
-        <b-col class="position-relative">
-            <site-header/>
-            <div class="p-4">
-                <nuxt/>
-            </div>
-            <site-footer/>
-        </b-col>
-    </b-row>
+    <b-container
+        fluid
+        class="p-0">
+        <b-row
+            no-gutters
+            id="wrapper">
+            <b-col cols="2">
+                <side-menu/>
+            </b-col>
+            <main class="col-10 position-relative">
+                <site-header/>
+                <div class="p-4">
+                    <nuxt/>
+                </div>
+                <site-footer/>
+            </main>
+        </b-row>
+    </b-container>
 </template>
 
 <script>
-    import SiteHeader from '~/components/SiteHeader'
-    import SiteFooter from '~/components/SiteFooter'
-    import SideMenu from '~/components/SideMenu'
+    import SiteHeader from './SiteHeader'
+    import SiteFooter from './SiteFooter'
+    import SideMenu from './SideMenu'
 
     export default {
         components: {

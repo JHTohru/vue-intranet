@@ -14,8 +14,8 @@ module.exports = {
         ],
     },
     css: [
-        'assets/scss/index.scss',
-        'bootstrap-vue/dist/bootstrap-vue.css',
+        'assets/css/fonts.css',
+        'assets/scss/bootstrap-custom.scss',
     ],
     /*
     ** Customize the progress bar color
@@ -58,5 +58,7 @@ module.exports = {
         'plugins/fontawesome.js' ,
         'plugins/bootstrap-vue.js',
         'plugins/format-money-filter.js',
+        { src: 'plugins/vue-select', ssr:  false },
     ],
+    vendors: ['vue-select'],
 };
