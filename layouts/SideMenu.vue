@@ -177,10 +177,13 @@ export default {
         & > .nav > .nav-item {
             transition: border-left ease-in 100ms;
 
-            &.active, &:hover {
-                background-color: #293846;
+            &.active {
                 border-style: solid;
                 border-width: 0 0 0 4px;
+            }
+
+            &.active, &:hover {
+                background-color: #293846;
 
                 & > a {
                     color: white;

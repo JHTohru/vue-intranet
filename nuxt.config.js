@@ -51,7 +51,7 @@ module.exports = {
                     exclude: /(node_modules)/
                 })
             }
-        }
+        },
     },
     modules: [],
     plugins: [

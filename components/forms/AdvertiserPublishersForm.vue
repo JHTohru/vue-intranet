@@ -17,7 +17,8 @@
             <td>
                 <v-select
                     multiple
-                    :options="regionOptions" />
+                    :options="regionOptions"
+                    placeholder="Selecione"/>
             </td>
             <td>
                 <font-awesome-icon :icon="['fas', 'trash']" />

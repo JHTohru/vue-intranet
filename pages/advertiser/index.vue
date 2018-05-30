@@ -1,13 +1,16 @@
 <template>
-
-    <div class="bg-white p-4">
-        <h1>Lista de Advertisers</h1>
-        <b-button
-            :to="'advertiser/new'"
-            variant="primary">
-            <font-awesome-icon :icon="['fas', 'plus']" />
-            <span class="ml-2">Criar Advertiser</span>
-        </b-button>
+    <card
+        title="Lista de Anunciantes"
+        body-size="12">
+        <template slot="card-header-append">
+            <b-button
+                :to="'advertiser/new'"
+                variant="primary"
+                class="float-right">
+                <font-awesome-icon :icon="['fas', 'plus']" />
+                <span class="ml-2">Criar Advertiser</span>
+            </b-button>
+        </template>
 
         <div class="input-group w-25 float-right mb-3">
             <div class="input-group-prepend">
@@ -27,16 +30,19 @@
         <grid
             :columns="grid_columns"
             :rows="grid_rows"/>
+
         <b-pagination
+            variant="secondary"
             align="right"
             :total-rows="100"
             :per-page="10"
             v-model="currentPage"/>
-    </div>
+    </card>
 </template>
 
 <script>
     import moment from 'moment';
+    import Card from '~/layouts/Card';
     import Grid from '~/components/Grid';
     import MoneyConsumption from '~/components/MoneyConsumption';
     import StatusChanger from '~/components/StatusChanger';
@@ -152,6 +158,7 @@
             },
         },
         components: {
+            Card,
             Grid,
         },
     };

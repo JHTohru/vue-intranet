@@ -33,9 +33,11 @@
             horizontal
             :label-cols="4"
             label="Redes">
+
             <v-select
                 multiple
-                :options="networkOptions"/>
+                :options="networkOptions"
+                placeholder="Selecione"/>
         </b-form-group>
 
         <b-form-group

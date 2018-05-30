@@ -4,7 +4,7 @@
             @click="toggleMenu"
             v-on-clickaway="closeMenu"
             type="button"
-            class="btn btn-outline-secondary dropdown-toggle">
+            class="btn btn-outline-status dropdown-toggle">
             <font-awesome-icon
                 :icon="['fas', 'circle']"
                 :class="`text-${!!status ? 'primary' : 'danger'}`"
@@ -17,7 +17,13 @@
             <a
                 @click.capture.prevent.stop="toggleStatus"
                 class="dropdown-item"
-                href="#">{{ status ? inactiveText : activeText }}</a>
+                href="#">
+                <font-awesome-icon
+                    :icon="['fas', 'circle']"
+                    :class="`text-${!!status ? 'danger' : 'primary'}`"
+                    class="mr-1"/>
+                <span>{{ status ? inactiveText : activeText }}</span>
+            </a>
         </div>
     </div>
 </template>

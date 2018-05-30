@@ -1,8 +1,9 @@
 <template>
     <b-card no-body>
-        <div class="card-title p-3 m-0">
+        <b-card-header class="d-flex justify-content-between align-items-center bg-white">
             <h5 class="m-0 font-weight-bold">{{ title }}</h5>
-        </div>
+            <slot name="card-header-append"/>
+        </b-card-header>
         <b-card-body>
             <b-row no-gutters>
                 <b-col :cols="bodySize">
@@ -20,8 +21,8 @@
                 type: String,
             },
             bodySize: {
-                type: Number,
-                default: 6,
+                type: String,
+                default: '6',
             },
         },
     };
