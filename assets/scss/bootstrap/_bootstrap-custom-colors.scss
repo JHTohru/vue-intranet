@@ -1,0 +1,13 @@
+$colors: (
+    "teal": #1AB394,
+);
+
+$teal: map-get($colors, 'teal');
+
+$theme-colors: (
+    "primary": $teal,
+    "secondary": #999c9e,
+);
+
+$primary: map-get($theme-colors, 'primary');
+$secondary: map-get($theme-colors, 'secondary');

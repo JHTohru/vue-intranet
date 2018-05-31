@@ -4,7 +4,7 @@
         body-size="12">
         <template slot="card-header-append">
             <b-button
-                :to="'advertiser/new'"
+                to="advertiser/new"
                 variant="primary"
                 class="float-right">
                 <font-awesome-icon :icon="['fas', 'plus']" />
@@ -14,8 +14,8 @@
 
         <div class="input-group w-25 float-right mb-3">
             <div class="input-group-prepend">
-                <div class="input-group-text p-0 border-right-0">
-                    <button class="btn">
+                <div class="input-group-text bg-transparent p-0 border-right-0">
+                    <button class="btn bg-transparent">
                         <font-awesome-icon :icon="['fas', 'search']"/>
                     </button>
                 </div>

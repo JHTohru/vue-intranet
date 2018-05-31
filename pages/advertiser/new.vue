@@ -1,12 +1,12 @@
 <template>
     <div>
         <card
-            :title="'Dados do Anunciante'"
+            title="Dados do Anunciante"
             class="mb-3">
             <advertiser-form/>
         </card>
 
-        <card :title="'Publishers'">
+        <card title="Publishers">
             <advertiser-publishers-form/>
         </card>
     </div>

@@ -35,12 +35,6 @@
     </div>
 </template>
 
-<style scoped>
-    table td {
-        vertical-align: middle;
-    }
-</style>
-
 <script>
     export default {
         props: {

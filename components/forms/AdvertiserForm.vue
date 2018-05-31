@@ -85,6 +85,9 @@
                     { label: 'Charlie', value: 3 },
                     { label: 'Delta', value: 4 }
                 ],
+                regionOptions: [
+                    { text: 'Brasil', value: 'brazil' },
+                ],
             };
         },
         components: {

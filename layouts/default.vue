@@ -2,19 +2,19 @@
     <b-container
         fluid
         class="p-0">
-        <b-row
-            no-gutters
-            id="wrapper">
+        <b-row no-gutters>
             <b-col cols="2">
                 <side-menu/>
             </b-col>
-            <main class="col-10 position-relative">
+            <b-col
+                id="wrapper"
+                cols="10">
                 <site-header/>
-                <div class="p-4">
+                <main class="position-relative p-4">
                     <nuxt/>
-                </div>
+                </main>
                 <site-footer/>
-            </main>
+            </b-col>
         </b-row>
     </b-container>
 </template>

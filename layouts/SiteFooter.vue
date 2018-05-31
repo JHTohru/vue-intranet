@@ -1,6 +1,8 @@
 <template>
-    <footer class="bg-white position-absolute w-100 px-4 py-3 text-secondary">
-        <b-row no-gutters>
+    <footer class="bg-white position-absolute w-100 text-secondary">
+        <b-row
+            no-gutters
+            class="px-4 py-3">
             <b-col cols="2">
                 <span>2015 - {{ currentYear }} Percycle</span>
             </b-col>
