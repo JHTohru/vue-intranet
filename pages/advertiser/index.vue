@@ -1,5 +1,6 @@
 <template>
     <card
+        v-if="advertisers.length > 0"
         title="Lista de Anunciantes"
         body-size="12">
         <template slot="card-header-append">
@@ -16,7 +17,9 @@
             <div class="input-group-prepend">
                 <div class="input-group-text bg-transparent p-0 border-right-0">
                     <button class="btn bg-transparent">
-                        <font-awesome-icon :icon="['fas', 'search']"/>
+                        <font-awesome-icon
+                            :icon="['far', 'search']"
+                            class="text-secondary"/>
                     </button>
                 </div>
             </div>
@@ -38,11 +41,23 @@
             :per-page="10"
             v-model="currentPage"/>
     </card>
+    <empty-card
+        v-else
+        title="Nenhum Anunciante cadastrado">
+
+        <b-button
+            to="advertiser/new"
+            variant="primary">
+            <font-awesome-icon :icon="['fas', 'plus']" />
+            <span class="ml-2">Criar Advertiser</span>
+        </b-button>
+    </empty-card>
 </template>
 
 <script>
     import moment from 'moment';
     import Card from '~/layouts/Card';
+    import EmptyCard from '~/layouts/EmptyCard';
     import Grid from '~/components/Grid';
     import MoneyConsumption from '~/components/MoneyConsumption';
     import StatusChanger from '~/components/StatusChanger';
@@ -130,7 +145,7 @@
                 return this.advertisers.map(advertiser => ({
                     status: {
                         component: StatusChanger,
-                        props: { value: !!advertiser.status },
+                        props: { value: advertiser.status },
                     },
                     name: {
                         component: 'b-link',
@@ -159,6 +174,7 @@
         },
         components: {
             Card,
+            EmptyCard,
             Grid,
         },
     };

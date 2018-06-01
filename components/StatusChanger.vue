@@ -53,7 +53,7 @@
             },
         },
         created() {
-            this.status = this.value;
+            this.status = this.value === 1;
         },
         methods: {
             toggleMenu() {

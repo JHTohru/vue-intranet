@@ -20,7 +20,7 @@
                         placeholder="Selecione"/>
                 </td>
                 <td class="text-center">
-                    <font-awesome-icon :icon="['fas', 'trash']" />
+                    <font-awesome-icon :icon="['far', 'trash']" />
                 </td>
             </tr>
             </tbody>
@@ -38,6 +38,10 @@
             id="add-publisher-modal"
             title="Adicionar Publisher">
             <add-publisher-form/>
+            <template slot="modal-footer">
+                <b-button variant="outline-secondary">Cancelar</b-button>
+                <b-button variant="primary">Salvar</b-button>
+            </template>
         </b-modal>
     </div>
 </template>

@@ -1,0 +1,36 @@
+#wrapper {
+  > main {
+    margin-bottom: 50px;
+  }
+
+  > footer {
+    height: 50px;
+  }
+}
+
+.v-select {
+  input[type=search] {
+    &, &:focus {
+      padding: $input-padding-y $input-padding-x !important;
+      color: $input-color !important;
+    }
+  }
+
+  .close {
+    font-size: 1rem !important;
+    margin-left: .15rem !important;
+  }
+  .dropdown-toggle {
+    border: $input-border-width solid $input-border-color !important;
+  }
+
+  &.open .dropdown-toggle {
+    border-color: $input-focus-border-color !important;
+
+    @if $enable-shadows {
+      box-shadow: $input-box-shadow, $input-focus-box-shadow !important;
+    } @else {
+      box-shadow: $input-focus-box-shadow !important;
+    }
+  }
+}
