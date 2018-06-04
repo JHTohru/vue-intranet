@@ -150,7 +150,7 @@
                     name: {
                         component: 'b-link',
                         value: advertiser.name,
-                        props: { href: `advertiser/${advertiser.id}` },
+                        props: { href: `advertiser/${advertiser.id}/dashboard` },
                     },
                     type: advertiser.type.charAt(0).toUpperCase() + advertiser.type.substr(1),
                     network: {

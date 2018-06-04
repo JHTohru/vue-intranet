@@ -1,8 +1,8 @@
 <template>
-    <header class="bg-white px-4 py-3">
+    <header class="bg-white">
         <b-row
             no-gutters
-            class="align-items-center">
+            class="px-4 py-3 align-items-center border border-top-0 border-right-0 border-left-0">
             <b-col cols="1">
                 <b-button variant="primary">
                     <font-awesome-icon
@@ -22,5 +22,7 @@
                 </b-link>
             </b-col>
         </b-row>
+
+        <slot/>
     </header>
 </template>
