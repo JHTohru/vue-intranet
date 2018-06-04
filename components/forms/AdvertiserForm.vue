@@ -4,7 +4,7 @@
             horizontal
             :label-cols="4"
             label="Status">
-            <status-changer :value="false"/>
+            <status-changer :value="status"/>
         </b-form-group>
 
         <b-form-group
@@ -78,7 +78,7 @@
     export default {
         data() {
             return {
-                value: null,
+                status: 1,
                 networkOptions: [
                     { label: 'Alpha', value: 1 },
                     { label: 'Bravo', value: 2 },

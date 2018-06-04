@@ -48,8 +48,8 @@
                 default: 'Inativo',
             },
             value: {
-                type: Boolean,
-                default: false,
+                type: Number,
+                default: 2,
             },
         },
         created() {

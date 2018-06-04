@@ -3,11 +3,11 @@
         <b-col cols="5">
             <b-breadcrumb :items="breadcrumb"/>
 
-            <status-changer :value="status"/>
+            <status-changer :value="advertiser.status"/>
         </b-col>
         <b-col cols="2">
             <p class="font-weight-bold">Campanhas ativas</p>
-            <p>{{ activeCampaigns }}</p>
+            <p>{{ advertiser.activeCampaigns }}</p>
         </b-col>
         <b-col cols="1">
             <p class="font-weight-bold">Tipo</p>
@@ -24,8 +24,8 @@
         <b-col cols="2">
             <p class="font-weight-bold">Orçamento</p>
             <money-consumption
-                :spentMoney="activeCampaignsConsumption"
-                :totalMoney="activeCampaignsBudget"/>
+                :spentMoney="advertiser.activeCampaignsConsumption"
+                :totalMoney="advertiser.activeCampaignsBudget"/>
         </b-col>
     </b-row>
 </template>
@@ -37,41 +37,21 @@
     import MoneyConsumption from '~/components/MoneyConsumption';
 
     export default {
-        data() {
-            return {
-                status: 2,
-                id: '580563fee4b08742287c30e3',
-                name: 'Epson',
-                type: 'seller',
-                networks: [
-                    {
-                        id: '58090104e4b070707cb7dc02',
-                        name: 'Charlie',
-                    },
-                    {
-                        id: '58090104e4b070707cb7dc02',
-                        name: 'Delta',
-                    },
-                ],
-                activeCampaigns: 4,
-                createdAt: '2018-01-02T03:00:00Z',
-                updatedAt: '2018-04-15T03:00:00Z',
-                activeCampaignsConsumption: 3102.77,
-                activeCampaignsBudget: 12000,
-            };
-        },
+        props: [
+            'advertiser',
+        ],
         computed: {
             formattedType() {
-                return this.type.charAt(0).toUpperCase() + this.type.substr(1);
+                return this.advertiser.type.charAt(0).toUpperCase() + this.advertiser.type.substr(1);
             },
             formattedCreatedAt() {
-                return moment(this.createdAt).format('DD/MM/YYYY');
+                return moment(this.advertiser.createdAt).format('DD/MM/YYYY');
             },
             formattedUpdatedAt() {
-                return moment(this.updatedAt).format('DD/MM/YYYY');
+                return moment(this.advertiser.updatedAt).format('DD/MM/YYYY');
             },
             networksLinks() {
-                return this.networks.map(n => ({ text: n.name, href: `network/${n.id}` }));
+                return this.advertiser.networks.map(n => ({ text: n.name, href: `network/${n.id}` }));
             },
             breadcrumb() {
                 return [
@@ -84,7 +64,7 @@
                         href: '/advertiser',
                     },
                     {
-                        text: this.name,
+                        text: this.advertiser.name,
                         active: true,
                     },
                 ];
