@@ -2,18 +2,7 @@
     <div>
         <b-row class="mb-3">
             <b-col class="d-flex align-items-center">
-                <vue-daterange-picker
-                    double
-                    start-date="06/10/2017"
-                    end-date="06/10/2018"/>
-                <b-button
-                    variant="primary"
-                    class="d-flex align-items-center dropdown-toggle">
-                    <font-awesome-icon
-                        :icon="['far', 'calendar-alt']"
-                        class="fa-lg mr-2"/>
-                    <span class="mr-1">Última semana</span>
-                </b-button>
+                <date-range-picker/>
             </b-col>
             <b-col
                 cols="auto"
@@ -38,7 +27,7 @@
             <b-col class="mr-2">
                 <metric-box
                     name="CRT"
-                    description="Lorem ipsum"
+                    description="Pergunta pro Macabu"
                     format="money"
                     :value="123.31"
                     :variation="-12"/>
@@ -46,7 +35,7 @@
             <b-col class="mr-2">
                 <metric-box
                     name="ROI"
-                    description="Retorno do investimento"
+                    description="Retorno do Investimento"
                     format="flat"
                     :value="21"
                     :variation="15"/>
@@ -54,10 +43,15 @@
             <b-col>
                 <metric-box
                     name="Taxa de Conversão"
-                    description="Pergunta pro Macabu"
+                    description="¯\_(ツ)_/¯"
                     format="percent"
                     :value="1.75"
                     :variation="7"/>
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-col>
+                <line-chart/>
             </b-col>
         </b-row>
     </div>
@@ -65,8 +59,9 @@
 
 <script>
     import moment from 'moment';
-    import VueDaterangePicker from 'vue-daterange-picker';
+    import DateRangePicker from '~/components/DateRangePicker';
     import MetricBox from '~/components/MetricBox';
+    import LineChart from '~/components/LineChart';
 
     export default {
         data() {
@@ -90,8 +85,9 @@
             },
         },
         components: {
+            DateRangePicker,
             MetricBox,
-            VueDaterangePicker,
+            LineChart,
         },
     };
 </script>
