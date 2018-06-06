@@ -51,7 +51,7 @@
         </b-row>
         <b-row>
             <b-col>
-                <line-chart/>
+                <bar-chart :height="100"/>
             </b-col>
         </b-row>
     </div>
@@ -62,6 +62,7 @@
     import DateRangePicker from '~/components/DateRangePicker';
     import MetricBox from '~/components/MetricBox';
     import LineChart from '~/components/LineChart';
+    import BarChart from '~/components/BarChart';
 
     export default {
         data() {
@@ -87,6 +88,7 @@
         components: {
             DateRangePicker,
             MetricBox,
+            BarChart,
             LineChart,
         },
     };

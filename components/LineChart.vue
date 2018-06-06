@@ -9,7 +9,7 @@
                 datasets: [
                     {
                         label: 'Carajo',
-                        backgroundColor: '#f0f0f0',
+                        // backgroundColor: '#f0f0f0',
                         data: [20, 30, 10, 32, 11],
                     },
                 ],
