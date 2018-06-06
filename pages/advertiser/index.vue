@@ -1,6 +1,5 @@
 <template>
     <card
-        v-if="advertisers.length > 0"
         title="Lista de Anunciantes"
         body-size="12">
         <template slot="card-header-append">
@@ -41,17 +40,16 @@
             :per-page="10"
             v-model="currentPage"/>
     </card>
-    <empty-card
-        v-else
-        title="Nenhum Anunciante cadastrado">
-
-        <b-button
-            to="advertiser/new"
-            variant="primary">
-            <font-awesome-icon :icon="['fas', 'plus']" />
-            <span class="ml-2">Criar Advertiser</span>
-        </b-button>
-    </empty-card>
+    <!--<empty-card-->
+        <!--v-else-->
+        <!--title="Nenhum Anunciante cadastrado">-->
+        <!--<b-button-->
+            <!--to="advertiser/new"-->
+            <!--variant="primary">-->
+            <!--<font-awesome-icon :icon="['fas', 'plus']" />-->
+            <!--<span class="ml-2">Criar Advertiser</span>-->
+        <!--</b-button>-->
+    <!--</empty-card>-->
 </template>
 
 <script>
@@ -62,72 +60,79 @@
     import MoneyConsumption from '~/components/MoneyConsumption';
     import StatusChanger from '~/components/StatusChanger';
     import LinksList from '~/components/LinksList';
+    import api from '~/lib/api';
 
     export default {
+        // async fetch ({ store, params }) {
+        //     await store.dispatch('advertiser/list');
+        // },
+        async asyncData ({ params }) {
+            return api.advertisersList();
+        },
         props: [
             'currentPage',
         ],
-        data() {
-            return {
-                advertisers: [
-                    {
-                        status: 1,
-                        id: '59ad85d54524e41b3bf4f0ee',
-                        name: 'AOC',
-                        type: 'seller',
-                        networks: [{
-                            id: '58120a6069c18664b84f3f58',
-                            name: 'Alpha',
-                        }],
-                        activeCampaigns: 3,
-                        createdAt: '2018-05-03T03:00:00Z',
-                        updatedAt: '2018-08-01T03:00:00Z',
-                        activeCampaignsConsumption: 1212.32,
-                        activeCampaignsBudget: 3600,
-                    },
-                    {
-                        status: 1,
-                        id: '580563fee4b08742287c30e3',
-                        name: 'Acer',
-                        type: 'seller',
-                        networks: [
-                            {
-                                id: '58090104e4b070707cb7dc02',
-                                name: 'Bravo',
-                            },
-                        ],
-                        activeCampaigns: 4,
-                        createdAt: '2018-02-10T03:00:00Z',
-                        updatedAt: '2018-03-29T03:00:00Z',
-                        activeCampaignsConsumption: 2931.09,
-                        activeCampaignsBudget: 5600,
-                    },
-                    {
-                        status: 2,
-                        id: '580563fee4b08742287c30e3',
-                        name: 'Epson',
-                        type: 'seller',
-                        networks: [
-                            {
-                                id: '58090104e4b070707cb7dc02',
-                                name: 'Charlie',
-                            },
-                            {
-                                id: '58090104e4b070707cb7dc02',
-                                name: 'Delta',
-                            },
-                        ],
-                        activeCampaigns: 4,
-                        createdAt: '2018-01-02T03:00:00Z',
-                        updatedAt: '2018-04-15T03:00:00Z',
-                        activeCampaignsConsumption: 3102.77,
-                        activeCampaignsBudget: 12000,
-                    },
-                ],
-                total: 1,
-                searchParameter: '',
-            };
-        },
+        // data() {
+        //     return {
+        //         advertisers: [
+        //             {
+        //                 status: 1,
+        //                 id: '59ad85d54524e41b3bf4f0ee',
+        //                 name: 'AOC',
+        //                 type: 'seller',
+        //                 networks: [{
+        //                     id: '58120a6069c18664b84f3f58',
+        //                     name: 'Alpha',
+        //                 }],
+        //                 activeCampaigns: 3,
+        //                 createdAt: '2018-05-03T03:00:00Z',
+        //                 updatedAt: '2018-08-01T03:00:00Z',
+        //                 activeCampaignsConsumption: 1212.32,
+        //                 activeCampaignsBudget: 3600,
+        //             },
+        //             {
+        //                 status: 1,
+        //                 id: '580563fee4b08742287c30e3',
+        //                 name: 'Acer',
+        //                 type: 'seller',
+        //                 networks: [
+        //                     {
+        //                         id: '58090104e4b070707cb7dc02',
+        //                         name: 'Bravo',
+        //                     },
+        //                 ],
+        //                 activeCampaigns: 4,
+        //                 createdAt: '2018-02-10T03:00:00Z',
+        //                 updatedAt: '2018-03-29T03:00:00Z',
+        //                 activeCampaignsConsumption: 2931.09,
+        //                 activeCampaignsBudget: 5600,
+        //             },
+        //             {
+        //                 status: 2,
+        //                 id: '580563fee4b08742287c30e3',
+        //                 name: 'Epson',
+        //                 type: 'seller',
+        //                 networks: [
+        //                     {
+        //                         id: '58090104e4b070707cb7dc02',
+        //                         name: 'Charlie',
+        //                     },
+        //                     {
+        //                         id: '58090104e4b070707cb7dc02',
+        //                         name: 'Delta',
+        //                     },
+        //                 ],
+        //                 activeCampaigns: 4,
+        //                 createdAt: '2018-01-02T03:00:00Z',
+        //                 updatedAt: '2018-04-15T03:00:00Z',
+        //                 activeCampaignsConsumption: 3102.77,
+        //                 activeCampaignsBudget: 12000,
+        //             },
+        //         ],
+        //         total: 1,
+        //         searchParameter: '',
+        //     };
+        // },
         computed: {
             grid_columns() {
                 return [
