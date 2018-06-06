@@ -15,7 +15,7 @@
                 </p>
             </b-col>
         </b-row>
-        <b-row>
+        <b-row class="mb-3">
             <b-col class="mr-2">
                 <metric-box
                     name="CPC Médio"
@@ -49,9 +49,14 @@
                     :variation="7"/>
             </b-col>
         </b-row>
+        <b-row class="mb-3">
+            <b-col>
+                <impressions-clicks-conversions/>
+            </b-col>
+        </b-row>
         <b-row>
             <b-col>
-                <bar-chart :height="100"/>
+                <income-sales/>
             </b-col>
         </b-row>
     </div>
@@ -61,8 +66,8 @@
     import moment from 'moment';
     import DateRangePicker from '~/components/DateRangePicker';
     import MetricBox from '~/components/MetricBox';
-    import LineChart from '~/components/LineChart';
-    import BarChart from '~/components/BarChart';
+    import ImpressionsClicksConversions from '~/components/ImpressionsClicksConversions';
+    import IncomeSales from "../../../components/IncomeSales";
 
     export default {
         data() {
@@ -88,8 +93,8 @@
         components: {
             DateRangePicker,
             MetricBox,
-            BarChart,
-            LineChart,
+            ImpressionsClicksConversions,
+            IncomeSales,
         },
     };
 </script>

@@ -19,36 +19,27 @@
                 no-gutters
                 class="w-100">
                 <b-col cols="9">
-                    <bar-chart :height="150"/>
+                    <line-chart :height="150"/>
                 </b-col>
                 <b-col
                     cols="3"
                     class="pt-5">
                     <div class="card border-bottom-0">
                         <div class="card-body px-3 py-2">
-                            <p class="h3 font-weight-light">200.000.000</p>
+                            <p class="h3 font-weight-light">R$ 470.599,23</p>
                             <p class="d-flex justify-content-between m-0">
-                                <span>Impressões</span>
+                                <span>Receita</span>
                                 <metric-variation :percent="44"/>
                             </p>
                         </div>
                     </div>
 
-                    <div class="card border-bottom-0">
-                        <div class="card-body px-3 py-2">
-                            <p class="h3 font-weight-light">120.230.000</p>
-                            <p class="d-flex justify-content-between m-0">
-                                <span>Cliques</span>
-                                <metric-variation :percent="-4"/>
-                            </p>
-                        </div>
-                    </div>
                     <div class="card">
                         <div class="card-body px-3 py-2">
-                            <p class="h3 font-weight-light">1.000.000</p>
+                            <p class="h3 font-weight-light">R$ 1.740.983,45</p>
                             <p class="d-flex justify-content-between m-0">
-                                <span>Conversões</span>
-                                <metric-variation :percent="3"/>
+                                <span>Venda</span>
+                                <metric-variation :percent="-4"/>
                             </p>
                         </div>
                     </div>
@@ -60,13 +51,13 @@
 
 <script>
     import Card from '~/layouts/Card';
-    import BarChart from '~/components/BarChart';
+    import LineChart from '~/components/LineChart';
     import MetricVariation from '~/components/MetricVariation';
 
     export default {
         components: {
             Card,
-            BarChart,
+            LineChart,
             MetricVariation,
         },
     };

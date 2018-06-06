@@ -12,18 +12,15 @@
                             label: 'Impressões',
                             data: [63, 40, 20, 32, 11, 12, 22],
                             backgroundColor: 'rgba(26, 179, 148, .25)',
-                            // variation: 44,
                         },
                         {
                             label: 'Cliques',
                             data: [61, 59, 20, 32, 11, 12, 22],
-                            // variation: -4,
                         },
                         {
                             label: 'Conversões',
                             data: [24, 46, 20, 32, 11, 12, 22],
                             backgroundColor: 'rgba(26, 179, 148, .5)',
-                            // variation: 3,
                         },
                     ],
                 },
