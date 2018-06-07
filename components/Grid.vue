@@ -6,8 +6,16 @@
                     <tr>
                         <th
                             v-for="(column, index) in columns"
-                            :key="index">
-                            {{ column }}
+                            :key="index"
+                            >
+                            <a
+                                v-if="typeof column.sort === 'function'"
+                                @click="sort(column)">
+                                {{ column }}
+                            </a>
+                            <template v-else>
+                                {{ column }}
+                            </template>
                         </th>
                     </tr>
                 </thead>
@@ -37,9 +45,29 @@
 
 <script>
     export default {
+        data() {
+            return {
+                sortColumn: null,
+                sortOrientation: 1,
+            };
+        },
         props: {
             rows: Array,
             columns: Array,
+        },
+        methods: {
+            sort(column) {
+                if (typeof column.sort === 'function') {
+                    if (this.sortColumn !== column) {
+                        this.sortColumn = column;
+                        this.sortOrientation = 1;
+                    } else {
+                        this.sortOrientation *= -1;
+                    }
+
+                    column.sort(this.sortOrientation);
+                }
+            },
         },
     };
 </script>

@@ -1,29 +1,30 @@
 import Vuex from 'vuex';
-import api from '~/lib/api';
-
-export const types = {
-    ADVERTISERS_LIST_UPDATE: 'ADVERTISERS_LIST_UPDATE',
-};
+import axios from '~/plugins/axios';
 
 const createStore = () => {
     return new Vuex.Store({
         state: {
-            advertisers_list: {},
+            advertisers: [],
         },
         mutations: {
-            [types.ADVERTISERS_LIST_UPDATE] (state, payload) {
-                state.advertisers_list = { ...payload };
+            setAdvertisers (state, advertisers) {
+                state.advertisers = advertisers;
             },
         },
         actions: {
-            nuxtServerInit ({ commit }) {
-                const getAdvertisersList = api.advertisersList()
-                    .then((res) => {
-                        commit(types.ADVERTISERS_LIST_UPDATE, res.advertisers_list);
-                    });
+            async getAdvertisers ({ commit }) {
+                let { data } = await axios.get('/advertisers');
 
-                return Promise.all([getAdvertisersList]);
+                commit('setAdvertisers', data.data);
             },
+            // nuxtServerInit ({ commit }) {
+                // const getAdvertisersList = api.advertisersList()
+                //     .then((res) => {
+                //         commit(types.ADVERTISERS_LIST_UPDATE, res.advertisers_list);
+                //     });
+                //
+                // return Promise.all([getAdvertisersList]);
+            // },
         },
     });
 };
