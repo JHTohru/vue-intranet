@@ -1,5 +1,18 @@
 <template>
-    <div>
+    <card
+        v-if="advertisers.length > 0"
+        title="Lista de Anunciantes"
+        body-size="12">
+        <template slot="card-header-append">
+            <b-button
+                to="advertiser/new"
+                variant="primary"
+                class="float-right">
+                <font-awesome-icon :icon="['fas', 'plus']"/>
+                <span class="ml-2">Criar Advertiser</span>
+            </b-button>
+        </template>
+
         <div class="input-group w-25 float-right mb-3">
             <div class="input-group-prepend">
                 <div class="input-group-text bg-transparent p-0 border-right-0">
@@ -27,21 +40,29 @@
             :total-rows="100"
             :per-page="10"
             v-model="currentPage"/>
-    </div>
+    </card>
+    <empty-card
+        v-else
+        title="Nenhum Anunciante cadastrado">
+        <b-button
+            to="advertiser/new"
+            variant="primary">
+            <font-awesome-icon :icon="['fas', 'plus']" />
+            <span class="ml-2">Criar Advertiser</span>
+        </b-button>
+    </empty-card>
 </template>
 
 <script>
     import moment from 'moment';
+    import Card from '~/layouts/Card';
     import Grid from '~/components/Grid';
+    import EmptyCard from '~/layouts/EmptyCard';
     import MoneyConsumption from '~/components/MoneyConsumption';
     import StatusChanger from '~/components/StatusChanger';
     import LinksList from '~/components/LinksList';
 
     export default {
-        props: {
-            advertisers: Array,
-            sort: Function,
-        },
         data() {
             return {
                 searchParameter: '',
@@ -49,6 +70,9 @@
             };
         },
         computed: {
+            advertisers () {
+                return this.$store.state.advertisers;
+            },
             gridColumns() {
                 return [
                     {
@@ -113,8 +137,15 @@
                 }));
             },
         },
+        methods: {
+            sort(prop, order) {
+                this.$store.dispatch('sortAdvertisers', { prop, order });
+            },
+        },
         components: {
+            Card,
             Grid,
+            EmptyCard,
         },
     };
 </script>

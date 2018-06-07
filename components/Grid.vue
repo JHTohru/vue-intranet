@@ -9,12 +9,13 @@
                             :key="index"
                             >
                             <a
+                                href="#"
                                 v-if="typeof column.sort === 'function'"
-                                @click="sort(column)">
-                                {{ column }}
+                                @click.prevent="sort(column)">
+                                {{ column.name }}
                             </a>
                             <template v-else>
-                                {{ column }}
+                                {{ column.name }}
                             </template>
                         </th>
                     </tr>
